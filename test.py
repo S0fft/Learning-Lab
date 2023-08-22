@@ -1,11 +1,20 @@
-class ParentClass:
-    def some_method(self):
-        print("Вызван метод родительского класса")
+class Point:
+    color = 'red'
+    circle = 2
 
-class ChildClass(ParentClass):
-    def some_method(self):
-        super().some_method()  # Вызываем метод родительского класса
-        print("Вызван метод дочернего класса")
 
-child = ChildClass()
-child.some_method()
+print(Point.color)
+# Point.color = 'black'
+# print(Point.color)
+# print(Point.__dict__)
+
+# a = Point()
+# b = Point()
+# print(a.color)
+# print(b.color)
+# b.color = 'green'
+# print(b.color)
+# print(a.__dict__)
+# print(b.__dict__)
+
+# print(type(a) == Point)  # Тип a == Point

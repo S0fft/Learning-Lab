@@ -1601,3 +1601,19 @@ with smtplib.SMTP(host='local host', port=2525) as smtp_server:
     smtp_server.send_message(my_email)  # Отправляем сообщение
     # print('Email was sent!')
 # ----------------------------------------
+
+
+class Figure:
+    def __init__(self, coords, width, color) -> None:
+        self.coords = coords
+        self.width = width
+        self.color = color
+
+    def draf(self):
+        print(f'Рисование фигуры с кординатами: {self.coords}, с шириной: {self.width}, цветом: {self.color}')
+
+
+a = Figure((11, 11), 11, 'green')
+print(a)
+
+a.draf()
