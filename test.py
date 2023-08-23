@@ -2,31 +2,28 @@ class Point:
     color = 'red'
     circle = 2
 
-    def set_cords(self, x, y):
+    def __init__(self, x=0, y=0) -> None:
+        print(f"Вызов метода __init__ для {self}")
         self.x = x
         self.y = y
 
+    def __del__(self):
+        print(f"Удаление экземпляра: {str(self)} ")
+
+    def set_cords(self, x, y):
         print(f"Вызов метода set_cords для {self}")
+        self.x = x
+        self.y = y
 
     def get_cords(self):
         return f"OBJ: {self} - {(self.x, self.y)}"
 
 
-# Point.set_cords() # Не сработает, пока есть параметр self
-
-pt = Point()
-
-pt2 = Point()
-print(pt.__dict__)
-
-pt.set_cords(1, 2)
-print(pt.__dict__)
-
-pt2.set_cords(10, 20)
-print(pt2.__dict__)
-
+pt = Point(10, 20)
+# pt.set_cords(1, 2)
 print(pt.get_cords())
-print(pt2.get_cords())
+print(pt.__dict__)
 
-f = getattr(pt, 'get_cords')  # Сохранение метода get_cords экземпляра pt в переменной, c возможным подальшем вызовом
-print(f())
+# Суть магического (дандер) метода __init__ заключается в том, чтобы при создании экзампляра класса нужно было СРАЗУ указать необходимые агрументы (в нашем случае координаты). Так же, в данном методе можно указать значение по умолчанию (в параметрах метода).
+
+# Метод __del__ дает возможность задать логику, которая будет отрабаывать ПЕРЕД удалением обьекта, а после обьект будет удален. Другими словами, __del__ отрабаывает без определения, но если его определить - имеем возможность прописать логику перед удалением.
