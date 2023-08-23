@@ -1617,3 +1617,41 @@ a = Figure((11, 11), 11, 'green')
 print(a)
 
 a.draf()
+
+
+class Point:
+    color = 'red'
+    circle = 2
+
+
+print(Point.color)
+# Point.color = 'black'
+# print(Point.color)
+# print(Point.__dict__)
+
+# a = Point()
+# b = Point()
+# print(a.color)
+# print(b.color)
+# b.color = 'green'
+# print(b.color)
+# print(a.__dict__)
+# print(b.__dict__)
+
+# print(type(a) == Point)  # Тип a == Point
+
+
+Point.type_pt = 'disc'
+setattr(Point, 'prop', 1)
+setattr(Point, 'prop', 'square')  # Классу Point даем атрибут 'prop' со значением 'square'
+print(Point.circle)  # Обращение к атирбуту класса
+print(Point.__dict__)
+
+print(getattr(Point, 'a', False))  # Получаем атирбут а, если атрибута нет - ворзащается False
+
+del Point.prop  # Удаление атрибута (который точно есть)
+print(Point.__dict__)  # Показывает все атрибуты класса
+print(hasattr(Point, 'prop'))  # Проверяет, есть ли указанный атрибут в классе
+
+delattr(Point, 'type_pt')  # Удаляем атрибут
+print(Point.__dict__)  # Показывает все атрибуты класса

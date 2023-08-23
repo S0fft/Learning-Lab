@@ -1,20 +1,18 @@
 class Point:
+    "Класс для представления координат точек на плоскастиd"
     color = 'red'
     circle = 2
 
 
-print(Point.color)
-# Point.color = 'black'
-# print(Point.color)
-# print(Point.__dict__)
+a = Point()
+a.x = 1
+a.y = 2
 
-# a = Point()
-# b = Point()
-# print(a.color)
-# print(b.color)
-# b.color = 'green'
-# print(b.color)
-# print(a.__dict__)
-# print(b.__dict__)
+b = Point()
+b.x = 10
+b.y = 20
 
-# print(type(a) == Point)  # Тип a == Point
+print(a.__dict__)
+print(b.__dict__)
+
+print(Point.__doc__) # Получаем док класс (описание)
