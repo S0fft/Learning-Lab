@@ -1,22 +1,21 @@
-from pathlib import Path  # Работа с отправкой сообщений по СМПТ
-from string import Template  # Работа с отправкой сообщений по СМПТ
-import smtplib  # Работа с отправкой сообщений по СМПТ
-from email.message import EmailMessage  # Работа с отправкой сообщений по СМПТ
-import webbrowser  # Работа с веб-браузером
-import sys  # Работа с аргументами программы
-from array import array  # Работа с типизированными массивами
-import sqlite3  # Работа с SQL-lite и DB-browoser
-import math  # Работа с матемтическми выражениями
-import string  # Работа с различными символами (строки, цифры)
-import secrets  # Работа с полностью рандомными значениями
-import random  # Работа с псевдо-рандомными значениями
-import time  # Работа с временностью выполнения кода
-from datetime import date, time, datetime, timedelta  # Работа с датой и временем
 import csv  # Работа с csv файлами
-from pathlib import Path  # ООП подходит работы с файлами
-from os import path  # Функциональный подход работы с файлами
 import json  # Работа с JSON форматом
+import math  # Работа с матемтическми выражениями
+import random  # Работа с псевдо-рандомными значениями
 import re  # Регулярные выражения
+import secrets  # Работа с полностью рандомными значениями
+import smtplib  # Работа с отправкой сообщений по СМПТ
+import sqlite3  # Работа с SQL-lite и DB-browoser
+import string  # Работа с различными символами (строки, цифры)
+import sys  # Работа с аргументами программы
+import time  # Работа с временностью выполнения кода
+import webbrowser  # Работа с веб-браузером
+from array import array  # Работа с типизированными массивами
+from datetime import date, datetime, time, timedelta  # Работа с датой и временем
+from email.message import EmailMessage  # Работа с отправкой сообщений по СМПТ
+from os import path  # Функциональный подход работы с файлами
+from pathlib import Path  # ООП подходит работы с файлами
+from string import Template  # Работа с отправкой сообщений по СМПТ
 
 
 # ------- СОЗДАНИЯ СЛОВАРЯ ИЗ СПИСКОВ С ПОМОЩЬЮ ZIP:
@@ -1794,3 +1793,26 @@ print(id(db), id(db2))
 
 db.connect()
 db2.connect()
+
+
+# ---------------------------------------------------------
+
+
+def decorator_function(original_fn):
+    def wrapper_function(*args, **kwargs):
+
+        result = original_fn(*args, **kwargs)
+
+        return result
+
+    return wrapper_function
+
+
+@decorator_function
+def my_function(a, b):
+    print('Test in my_function')
+
+    return (a, b)
+
+
+my_function(100, 50)

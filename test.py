@@ -1,53 +1,22 @@
-class Point():
-    def __new__(cls, *args, **kwargs):
-        print(f"Вызов __new__ для {str(cls)}")
+def decorator_function(original_fn):
+    def wrapper_function(*args, **kwargs):
+        print('Text before result')
 
-        return super().__new__(cls)
+        result = original_fn(*args, **kwargs)
 
-    def __init__(self, x=0, y=0):
-        print(f"Вызов __init__ для {str(self)}")
-        self.x = x
-        self.y = y
+        print('Text after result')
 
+        return result
 
-pt = Point(1, 2)
-print(pt)
+    return wrapper_function
 
 
-class DataBase:
-    __instance = None
+@decorator_function
+def my_function(a, b):
+    print('Test in my_function')
 
-    def __new__(cls, *args, **kwargs):
-        if cls.__instance is None:
-            cls.__instance = super().__new__(cls)
-
-        return cls.__instance
-
-    def __del__(self):
-        DataBase.__instance = None
-
-    def __init__(self, user, psw, port) -> None:
-        self.user = user
-        self.psw = psw
-        self.port = port
-
-    def connect(self):
-        print(f'Соединение с БД: {self.user}, {self.psw}, {self.port}')
-
-    def close(self):
-        print('Закрытие соединения с БД')
-
-    def read(self):
-        return 'Данные из БД'
-
-    def write(self, data):
-        print(f'Запись в БД')
+    return (a, b)
 
 
-db = DataBase('root', '1234', 80)
-db2 = DataBase('root2', '5678', 40)
-
-print(id(db), id(db2))
-
-db.connect()
-db2.connect()
+result = my_function(100, 50)
+print(result)
