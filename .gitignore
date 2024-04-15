@@ -1,4 +1,6 @@
 .app_template
+notes
+notes.txt
 
 *.log
 *.pot
