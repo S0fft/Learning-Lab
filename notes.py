@@ -13,6 +13,7 @@ import webbrowser  # Работа с веб-браузером
 from array import array  # Работа с типизированными массивами
 from datetime import date, datetime, time, timedelta  # Работа с датой и временем
 from email.message import EmailMessage  # Работа с отправкой сообщений по СМПТ
+from functools import wraps
 from os import path  # Функциональный подход работы с файлами
 from pathlib import Path  # ООП подходит работы с файлами
 from string import Template  # Работа с отправкой сообщений по СМПТ
@@ -1819,3 +1820,28 @@ def my_function(a, b):
 
 
 my_function(100, 50)
+
+
+def outer(a=1):
+    def decorator(func):
+        @wraps(func)
+        def wrapper(*args, **kwargs):
+            result = func(*args, **kwargs)
+
+            return result
+
+        return wrapper
+
+    return decorator
+
+
+@decorator(123)
+def some():
+    pass
+
+
+def new():
+    pass
+
+
+new = decorator(new)
