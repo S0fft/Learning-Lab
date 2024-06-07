@@ -3,8 +3,13 @@ from time import sleep
 import requests
 from bs4 import BeautifulSoup
 
+DOMAIN_NAME = "https://scrapingclub.com"
+
+list_card_url = []
+
+
 for page in range(1, 8):
-    sleep(10)
+    sleep(3)
     url = f"https://scrapingclub.com/exercise/list_basic/?page={page}"
 
     response = requests.get(url)
@@ -14,8 +19,20 @@ for page in range(1, 8):
     data = soup.find_all("div", class_="w-full rounded border")
 
     for i in data:
-        name = i.find("h4").text
-        price = i.find("h5").text
-        url_image = "https://scrapingclub.com" + i.find("img", class_="card-img-top img-fluid").get("src")
+        card_url = DOMAIN_NAME + i.find("a").get("href")
+        list_card_url.append(card_url)
 
-        print(name + "\n" + price + "\n" + url_image)
+
+for url in list_card_url:
+    url = f"https://scrapingclub.com/exercise/list_basic/?page={page}"
+
+    response = requests.get(url)
+
+    soup = BeautifulSoup(response.text, "lxml")
+
+    data = soup.find_all("div", class_="w-full rounded border")
+
+    for i in data:
+        card_url = DOMAIN_NAME + i.find("a").get("href")
+        list_card_url.append(card_url)
+
