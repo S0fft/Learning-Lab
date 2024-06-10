@@ -6,6 +6,16 @@ from bs4 import BeautifulSoup
 DOMAIN_NAME = "https://scrapingclub.com"
 
 
+def download_image(url):
+    resp = requests.get(url, stream=True)
+    r = open(r"C:\Development\learning-lab\parsing\images\\" + url.split("/")[-1], "wb")
+
+    for value in resp.iter_content(1024*1024):
+        r.write(value)
+
+    r.close()
+
+
 def get_url():
     for page in range(1, 8):
         url = f"https://scrapingclub.com/exercise/list_basic/?page={page}"
@@ -34,6 +44,8 @@ def fetch_card_details():
         price = data.find("h4").text
         text = data.find("p", class_="card-description").text
         url_img = DOMAIN_NAME + data.find("img").get("src")
+
+        download_image(url_img)
 
         yield name, price, text, url_img
         # print(name + '\n' + price + '\n' + text + '\n' + url_img + '\n  \n')
