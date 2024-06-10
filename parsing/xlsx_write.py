@@ -4,7 +4,7 @@ from main import fetch_card_details
 
 def writer(info):
 
-    book = xlsxwriter.Workbook(r"C:\Development\draft\parsing\info.xlsx")
+    book = xlsxwriter.Workbook(r"C:\Development\learning-lab\parsing\info.xlsx")
     page = book.add_worksheet("ToBap")
 
     row = 0
