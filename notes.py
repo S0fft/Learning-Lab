@@ -913,8 +913,6 @@ cords1 = getattr(pt, "get_cords")
 # print(pt2.__dict__)
 
 # ---------------------SINGLETON
-
-
 class DataBase:
     __instance = None  # Ссылка на экземпляр класса
 
