@@ -1,26 +1,45 @@
-from functools import wraps
+name = "Test"
+other_name = "Mike"
+
+name = other_name
+
+other_name = "another"
+print(name)
+print(other_name)
+
+age = 21
+print(id(age))
+
+age += 1
+print(age)
+print(id(age))
+
+a = []
+
+print(a.)
 
 
-def outer(a=1):
-    def decorator(func):
-        @wraps(func)
-        def wrapper(*args, **kwargs):
-            result = func(*args, **kwargs)
+lst = [1, 2]
+print(id(lst))
 
-            return result
+lst.append(3)
+print(id(lst))
 
-        return wrapper
+dct = {"name": "Jack", "new": "new"}
+print(dct[1])
+print(id(dct))
 
-    return decorator
+dct["name"] = "Another"
+print(dct)
+print(id(dct))
 
+dct["new"] = "new"
 
-@decorator(123)
-def some():
-    pass
+print(dct)
+print(id(dct))
+print(dct.keys())
+print(dct.values())
 
-
-def new():
-    pass
-
-
-new = decorator(new)
+dct_to_lst = list(dct.values())
+print(dct_to_lst)
+print(type(dct_to_lst))
