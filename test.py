@@ -1,22 +1,26 @@
-def validate_args(fn):
-    def wrapper(*args, **kwargs):
-        for arg in [*args, *kwargs.values()]:
-            if not isinstance(arg, int) and not isinstance(arg, float):
-                raise ValueError(f"Type of the {arg} is {type(arg)}", "All arguments must be int or float!")
+def is_user_authenticated():
+    return True
 
-        return fn(*args, **kwargs)
+
+def check_user_auth(fn):
+    def wrapper(*args, **kwargs):
+        if is_user_authenticated():
+            print("User is authenticated!")
+            return fn(*args, **kwargs)
+        else:
+            print("User is not authenticated!")
+            raise Exception("User is not authenticated!")
 
     return wrapper
 
 
-@validate_args
-def sum_nums(a, b):
-    return a + b
+@check_user_auth
+def do_sensitive_job():
+    # Do something if user is authenticated
+    print("Some results")
 
 
 try:
-    print(sum_nums(7, 2))
-    print(sum_nums(10.5, 2.3))
-    print(sum_nums(a=10.5, b=2.0))
-except ValueError as e:
+    do_sensitive_job()
+except Exception as e:
     print(e)
