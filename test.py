@@ -1,45 +1,22 @@
-name = "Test"
-other_name = "Mike"
+def validate_args(fn):
+    def wrapper(*args, **kwargs):
+        for arg in [*args, *kwargs.values()]:
+            if not isinstance(arg, int) and not isinstance(arg, float):
+                raise ValueError(f"Type of the {arg} is {type(arg)}", "All arguments must be int or float!")
 
-name = other_name
+        return fn(*args, **kwargs)
 
-other_name = "another"
-print(name)
-print(other_name)
-
-age = 21
-print(id(age))
-
-age += 1
-print(age)
-print(id(age))
-
-a = []
-
-print(a.)
+    return wrapper
 
 
-lst = [1, 2]
-print(id(lst))
+@validate_args
+def sum_nums(a, b):
+    return a + b
 
-lst.append(3)
-print(id(lst))
 
-dct = {"name": "Jack", "new": "new"}
-print(dct[1])
-print(id(dct))
-
-dct["name"] = "Another"
-print(dct)
-print(id(dct))
-
-dct["new"] = "new"
-
-print(dct)
-print(id(dct))
-print(dct.keys())
-print(dct.values())
-
-dct_to_lst = list(dct.values())
-print(dct_to_lst)
-print(type(dct_to_lst))
+try:
+    print(sum_nums(7, 2))
+    print(sum_nums(10.5, 2.3))
+    print(sum_nums(a=10.5, b=2.0))
+except ValueError as e:
+    print(e)
