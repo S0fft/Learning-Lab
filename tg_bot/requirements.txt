@@ -1,0 +1,3 @@
+python-decouple
+autopep8
+isort
