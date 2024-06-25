@@ -43,4 +43,6 @@ async def parser(message: types.message):
         image = soup.find("img", class_="MPQaS gHc6F")["src"]
         # print(name, "\n", price, "\n", image, "\n")
 
+        await bot.send_photo(message.chat.id, image, caption="<b>" + name + "</b>\n<i>" + price + " грн." + f"</i>\n<a href='{url}'>Link to the page</a>", parse_mode="html")
+
 executor.start_polling(dp)
