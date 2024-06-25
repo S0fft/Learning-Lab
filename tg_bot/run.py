@@ -33,7 +33,16 @@ async def parser(message: types.message):
 
     links = soup.find_all('a', class_='_0cNvO jwtUM', attrs={'data-qaid': 'product_link'})
 
-    for link in links:
-        print(DOMEN + link["href"] + "\n")
+    for link in links[:10]:
+        # print(DOMEN + link["href"] + "\n")
+
+        url = DOMEN + link["href"]
+        request = requests.get(url, headers=headers)
+        soup = BeautifulSoup(request.text, "html.parser")
+
+        name = soup.find("h1", class_="_3Trjq F7Tdh vj3pM htldP", attrs={'data-qaid': 'product_name'}).text
+        price = soup.find("span", class_="yzKb6").text.replace(" ", ".")
+        image = soup.find("img", class_="MPQaS gHc6F")["src"]
+        # print(name, "\n", price, "\n", image, "\n")
 
 executor.start_polling(dp)
