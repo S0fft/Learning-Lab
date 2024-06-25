@@ -1,5 +1,3 @@
-import time
-
 import requests
 from aiogram import Bot, Dispatcher, types
 from aiogram.utils import executor
@@ -9,7 +7,7 @@ from decouple import config
 bot = Bot(config("TOKEN"))
 dp = Dispatcher(bot)
 
-DOMEN = "https://prom.ua/"
+DOMAIN = "https://prom.ua/"
 
 
 @dp.message_handler(commands=["start"])
@@ -25,7 +23,7 @@ async def start(message: types.message):
 @dp.message_handler(content_types=["text"])
 async def parser(message: types.message):
     headers = {"User-Agent": "Mozilla/5.0 (X11; U; Linux i686) Gecko/20071127 Firefox/2.0.0.11"}
-    print(message.text)
+    # print(message.text)
 
     url = "https://prom.ua/ua/search?search_term=" + message.text
     request = requests.get(url, headers=headers)
@@ -36,7 +34,7 @@ async def parser(message: types.message):
     for link in links[:10]:
         # print(DOMEN + link["href"] + "\n")
 
-        url = DOMEN + link["href"]
+        url = DOMAIN + link["href"]
         request = requests.get(url, headers=headers)
         soup = BeautifulSoup(request.text, "html.parser")
 
