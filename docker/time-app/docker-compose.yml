@@ -1,0 +1,11 @@
+version: '3'
+
+secrets:
+  frontend:
+    build: ./frontend
+  api:
+    build: ./api
+  mysql:
+    image: mysql
+  adminer:
+    image: adminer
