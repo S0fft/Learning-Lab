@@ -15,9 +15,15 @@ async def print3():
 
 
 async def main():
-    print1()
-    print2()
-    print2()
+    task1 = asyncio.create_task(print1())
+    task2 = asyncio.create_task(print2())
+    task3 = asyncio.create_task(print3())
+
+    # await task1
+    # await task2
+    # await task3
+    # OR
+    await asyncio.gether(task1, task2, task3)
 
 
-asyncio.run()
+asyncio.run(main())
