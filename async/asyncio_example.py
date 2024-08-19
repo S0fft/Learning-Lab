@@ -6,7 +6,7 @@ async def print1():
 
 
 async def print2():
-    asyncio.sleep(10)
+    await asyncio.sleep(10)
     print(2)
 
 
