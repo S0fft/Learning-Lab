@@ -1952,6 +1952,7 @@ except Exception as e:
 
 # ---------------
 
+
 class City:
     def __init__(self, name='Kyiv'):
         self.name = name
