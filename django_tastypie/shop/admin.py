@@ -1,5 +1,6 @@
 from django.contrib import admin
-from . models import Course, Category
+
+from .models import Category, Course
 
 admin.site.site_header = 'Courses Admin'
 admin.site.site_title = 'My Courses'
