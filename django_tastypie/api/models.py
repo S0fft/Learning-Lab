@@ -1,6 +1,7 @@
-from tastypie.resources import ModelResource
 from shop.models import Category, Course
 from tastypie.authorization import Authorization
+from tastypie.resources import ModelResource
+
 from .authentication import CustomAuthentication
 
 
