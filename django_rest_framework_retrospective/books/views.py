@@ -13,15 +13,19 @@ from .serializers import BookSerializer
 
 class BookAPIView(APIView):
     def get(self, request):
-        lst = Book.objects.all().values()
+        # lst = Book.objects.all().values()
+        books = Book.objects.all()
 
-        return Response({'posts': list(lst)})
+        return Response({'posts': BookSerializer(books, many=True).data})
 
     def post(self, request):
+        serializer = BookSerializer(data=request.data)
+        serializer.is_valid(raise_exception=True)
+
         post_new = Book.objects.create(
             title=request.data['title'],
             content=request.data['content'],
             category_id=request.data['category_id']
         )
 
-        return Response({'post': model_to_dict(post_new)})
+        return Response({'post': BookSerializer(post_new).data})
