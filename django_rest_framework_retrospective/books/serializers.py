@@ -1,4 +1,7 @@
+import io
+
 from rest_framework import serializers
+from rest_framework.parsers import JSONParser
 from rest_framework.renderers import JSONRenderer
 
 from .models import Book
@@ -21,9 +24,17 @@ class BookSerializer(serializers.Serializer):
 
 
 def encode():
-    model = BookModel('Test-1', 'Content: Test-2')
+    model = BookModel('Test1', 'Content: Test1')
     model_sr = BookSerializer(model)
     print(model_sr.data, type(model_sr.data), sep='\n')
 
     json = JSONRenderer().render(model_sr.data)
     print(json)
+
+
+def decode():
+    stream = io.BytesI0(b'{"title":"Test2", "content":"Test2"}')
+    data = JSONParser().parse(stream)
+    serializer = BookSerializer(data=data)
+    serializer.is_valid()
+    print(serializer.validate_data)
