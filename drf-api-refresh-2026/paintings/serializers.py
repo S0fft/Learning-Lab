@@ -6,4 +6,4 @@ from .models import Painting
 class PaintingSerializer(serializers.ModelSerializer):
     class Meta:
         model = Painting
-        fields = ('title', 'category_name')
+        fields = ('title', 'category_name', 'description')
